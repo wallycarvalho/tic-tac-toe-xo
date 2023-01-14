@@ -57,6 +57,9 @@ The folder structure is divided into:
 
 ## Project: Running it
 
+First install dependencies
+
+`yarn install`
 
 To run the project, please execute the command below:
 
