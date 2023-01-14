@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# React Tic Tac Toe Xo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is example implementation for a recruitment process where I was given a certain design and implemented as much as I could giving a time constraint.
 
-## Available Scripts
+Below you will find explanation on some of the choices made as well as a list of incoming enhancements.
 
-In the project directory, you can run:
+## Starter project
 
-### `npm start`
+For this objective, I decided to use create-react-app as the base for the project development. Personally, I don't like having a non-ejected choice because I like more control over webpack and how certain things are implemented and installed such as bundling options and additional css plugins to make engineers life easier.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The other reason to have more control over webpack is the ability to have also more control over server-side rendering and hydration.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Development phase and breakdown
 
-### `npm test`
+For this project, I decided to start following a model that I've worked with in the past that I find very valuable: designing and implementing small components in isolation. For this purpose, we have some components created in storybook (see instructions below on how to see it) to facilitate the customization and design flexibility with great tools provided by storybook such as handlers, color customization, etc.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Small considerations
 
-### `npm run build`
+This project leverages yarn, thus yarn.lock was submitted to the repo. That means the following script commands will be executed with `yarn`. Personal preference.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Storybook
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To see components created in storybook, run the following commands:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`yarn build-storybook`
 
-### `npm run eject`
+and 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`yarn storybook`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Go to your browser and visit:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`localhost:6006`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Lastly, use the left panel to navigate through the components created.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project: Folder structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The folder structure is divided into:
 
-### Code Splitting
+`components`
+ - Where we keep small components (hopefully simple enough) designed to do one thing and one thing only
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+`pages`
+- Beefier pages designed to bring pages designed to life by aggregating components
 
-### Analyzing the Bundle Size
+`stories`
+- Where we keep storybook stories
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+`styles`
+- Where we keep styles, globals, themes, etc.
 
-### Making a Progressive Web App
+`tests`
+- Tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## Project: Running it
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+To run the project, please execute the command below:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+`yarn start`
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Compromises 
+
+ Mostly because of time, I'd like to have created a more elegante structure for the pages. We have everything in the Root.jsx file that is meant to host primarily the main page and an introductory home page. Instead, we have possibly two(2) pages in it that are doing a little more. I also didn't have the time to reach the actual board game part which was my primary goal. That said, the board was created and is available in storybook for visualization. 
+
+## Future improvements
+- [ ] Separate pages, create proper routes for home and games
+- [ ] Create game components and logic
+- [ ] Create page for records. Leverage browser storage to keep user history information (temporary to a certain point).
+- [ ] Introduce network / online gameplay leveraging web sockets
+- [ ] Create tests. Functional and integration tests for communication logic server -> client
+- [ ] Introduce QOL changes to improve user experience by implementing better network error handling and connection issues
+- [ ] Introducing Rated games. Create service to manage ratings and ladder.
