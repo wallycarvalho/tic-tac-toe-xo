@@ -1,0 +1,7 @@
+.container {
+  composes: bg-light-gray from '../../styles/theme.css';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
