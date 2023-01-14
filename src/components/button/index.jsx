@@ -5,9 +5,24 @@ import styles from './button.module.css';
 
 const cs = classnames.bind(styles);
 
-export default function Button({ children, onClick }) {
+export default function Button({
+  children,
+  onClick,
+  className,
+  wide,
+}) {
   return (
-    <button type="button" className={cs('base')} onClick={onClick}>
+    <button
+      type="button"
+      className={cs(
+        'base',
+        {
+          wide,
+        },
+        className,
+      )}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
@@ -20,9 +35,13 @@ Button.propTypes = {
     PropTypes.number,
   ]),
   onClick: PropTypes.func,
+  className: PropTypes.string,
+  wide: PropTypes.bool,
 };
 
 Button.defaultProps = {
   children: undefined,
   onClick: () => {},
+  className: undefined,
+  wide: false,
 };

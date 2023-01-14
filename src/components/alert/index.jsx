@@ -5,16 +5,36 @@ import styles from './alert.module.css';
 
 const cs = classnames.bind(styles);
 
-export default function Alert({ expireIn, children }) {
-  const [isVisible, setIsVisible] = useState(true);
+export default function Alert({
+  expireIn,
+  children,
+  shouldShow,
+  onDisappear,
+}) {
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (shouldShow) { setIsVisible(true); }
+  }, [shouldShow]);
+
+  useEffect(() => {
+    let disappearTime;
     const time = setTimeout(() => {
       setIsVisible(false);
+      disappearTime = setTimeout(() => {
+        onDisappear();
+      }, expireIn);
     }, expireIn);
 
-    return () => clearTimeout(time);
-  }, []);
+    return () => {
+      clearTimeout(time);
+      clearTimeout(disappearTime);
+    };
+  }, [shouldShow]);
+
+  if (!shouldShow) {
+    return null;
+  }
 
   return (
     <div className={cs(
@@ -37,9 +57,13 @@ Alert.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
+  shouldShow: PropTypes.bool,
+  onDisappear: PropTypes.func,
 };
 
 Alert.defaultProps = {
   expireIn: undefined,
   children: undefined,
+  shouldShow: false,
+  onDisappear: () => {},
 };

@@ -5,9 +5,9 @@ import styles from './frame.module.css';
 
 const cs = classnames.bind(styles);
 
-export default function Frame({ children }) {
+export default function Frame({ children, className }) {
   return (
-    <div className={cs('container')}>
+    <div className={cs('container', className)}>
       {children}
     </div>
   );
@@ -15,8 +15,10 @@ export default function Frame({ children }) {
 
 Frame.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 Frame.defaultProps = {
   children: undefined,
+  className: undefined,
 };
